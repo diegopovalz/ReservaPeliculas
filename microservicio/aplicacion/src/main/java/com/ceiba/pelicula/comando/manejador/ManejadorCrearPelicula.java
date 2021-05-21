@@ -20,7 +20,6 @@ public class ManejadorCrearPelicula implements ManejadorComandoRespuesta<Comando
 		this.servicioCrearPelicula = servicioCrearPelicula;
 	}
 
-	@Override
 	public ComandoRespuesta<Long> ejecutar(ComandoPelicula comandoPelicula) {
 		Pelicula pelicula = this.fabricaPelicula.crear(comandoPelicula);
 		return new ComandoRespuesta<>(this.servicioCrearPelicula.crear(pelicula));

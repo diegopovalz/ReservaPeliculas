@@ -2,12 +2,14 @@ package com.ceiba.pelicula.adaptador.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.ceiba.pelicula.adaptador.repositorio.RepositorioPeliculaJPA;
 import com.ceiba.pelicula.modelo.dto.DtoPelicula;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
-import com.ceiba.pelicula.modelo.mapeador.MapeadorPelicula;
 import com.ceiba.pelicula.puerto.dao.DaoPelicula;
 
+@Component
 public class DaoPeliculaImpl implements DaoPelicula {
 
 	private final RepositorioPeliculaJPA repositorio;

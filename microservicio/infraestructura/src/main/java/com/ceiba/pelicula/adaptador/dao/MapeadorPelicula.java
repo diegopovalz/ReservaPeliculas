@@ -1,11 +1,14 @@
-package com.ceiba.pelicula.modelo.mapeador;
+package com.ceiba.pelicula.adaptador.dao;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.ceiba.pelicula.modelo.dto.DtoPelicula;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
 
+@Component
 public class MapeadorPelicula {
 
 	public DtoPelicula entidadADto(Pelicula pelicula) {
