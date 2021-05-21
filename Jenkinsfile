@@ -29,23 +29,25 @@ pipeline {
           submoduleCfg: [], 
           userRemoteConfigs: [[
             credentialsId: 'GitHub_diegopovalz', 
-            url:'https://github.com/diegopovalz/Estacionamiento'
+            url:'https://github.com/diegopovalz/ReservaPeliculas'
           ]]
         ])
       }
     }
     
+    //./microservicio/./gradlew --b ./microservicio/build.gradle clean
+    
     stage('Clean') {
       steps{
-        sh 'chmod +x ./gradlew'
-      	sh './gradlew --b ./build.gradle clean'
+        sh 'chmod +x ./microservicio/./gradlew'
+      	sh './microservicio/./gradlew --b ./microservicio/build.gradle clean'
       }
     }
     
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>compile & Unit Tests<------------"
-        sh './gradlew --b ./build.gradle test'
+        sh './microservicio/./gradlew --b ./microservicio/build.gradle test'
       }
     }
 
@@ -61,7 +63,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh './gradlew --b ./build.gradle build -x test'
+        sh './microservicio/./gradlew --b ./microservicio/build.gradle build -x test'
       }
     }  
   }
