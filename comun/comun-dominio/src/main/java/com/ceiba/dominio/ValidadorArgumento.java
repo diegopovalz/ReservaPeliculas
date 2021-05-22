@@ -1,8 +1,5 @@
 package com.ceiba.dominio;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +7,6 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ceiba.dominio.excepcion.ExcepcionFormatoIncorrecto;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
@@ -98,13 +94,4 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
-    
-    public static void validarFechaFormatoCorrecto(String fecha, String mensaje) {
-    	DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			formato.parse(fecha);
-		} catch (ParseException e) {
-			throw new ExcepcionFormatoIncorrecto(mensaje);
-		}
-	}
 }

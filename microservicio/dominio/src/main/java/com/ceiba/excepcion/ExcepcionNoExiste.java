@@ -1,4 +1,4 @@
-package com.ceiba.dominio.excepcion;
+package com.ceiba.excepcion;
 
 public class ExcepcionNoExiste  extends RuntimeException{
 	private static final long serialVersionUID = 1L;

@@ -8,8 +8,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ceiba.dominio.excepcion.ExcepcionFormatoIncorrecto;
-import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
+import com.ceiba.excepcion.ExcepcionFormatoIncorrecto;
+import com.ceiba.excepcion.ExcepcionNoExiste;
 import com.ceiba.pelicula.puerto.dao.DaoPelicula;
 import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
 import com.ceiba.reserva.comando.ComandoReserva;

@@ -2,7 +2,7 @@ package com.ceiba.pelicula.consulta;
 
 import org.springframework.stereotype.Component;
 
-import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
+import com.ceiba.excepcion.ExcepcionNoExiste;
 import com.ceiba.pelicula.modelo.dto.DtoPelicula;
 import com.ceiba.pelicula.puerto.dao.DaoPelicula;
 import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
