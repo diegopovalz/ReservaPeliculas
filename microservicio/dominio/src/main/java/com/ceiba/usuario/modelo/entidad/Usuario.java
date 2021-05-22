@@ -1,14 +1,10 @@
 package com.ceiba.usuario.modelo.entidad;
 
-
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitud;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
-@Getter
 public class Usuario {
 
     private static final String SE_DEBE_INGRESAR_LA_FECHA_CREACION = "Se debe ingresar la fecha de creación";
@@ -35,4 +31,21 @@ public class Usuario {
         this.fechaCreacion = fechaCreacion;
     }
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public LocalDateTime getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+    
 }

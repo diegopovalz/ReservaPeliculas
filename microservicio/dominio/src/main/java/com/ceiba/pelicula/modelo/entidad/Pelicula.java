@@ -2,10 +2,8 @@ package com.ceiba.pelicula.modelo.entidad;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @NoArgsConstructor
 public class Pelicula {
 
@@ -30,4 +28,26 @@ public class Pelicula {
 		this.descripcion = descripcion;
 		this.estaReservado = estaReservado;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public String getEstaReservado() {
+		return estaReservado;
+	}
+	
+	
 }
