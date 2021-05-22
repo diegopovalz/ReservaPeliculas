@@ -2,6 +2,7 @@ package com.ceiba.pelicula.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class ComandoControladorPelicula {
 	
 	@PostMapping("/pelicula")
 	@ApiOperation("Crear pelicula")
-	public ComandoRespuesta<Long> crear(ComandoPelicula comandoPelicula) {
+	public ComandoRespuesta<Long> crear(@RequestBody ComandoPelicula comandoPelicula) {
 		return this.manejadorCrearPelicula.ejecutar(comandoPelicula);
 	}
 }

@@ -20,7 +20,7 @@ public class Reserva {
 	private Double valor;
 	private Date fechaReserva;
 	private Date fechaDevolucion;
-	private TipoReserva tipoReserva;
+	private String tipoReserva;
 	private Long peliculaId;
 	
 	public Reserva(Long id, Double valor, Date fechaReserva, Date fechaDevolucion, TipoReserva tipoReserva) {
@@ -30,9 +30,10 @@ public class Reserva {
 		validarObligatorio(tipoReserva, DEBE_INGRESAR_TIPO_RESERVA);
 		
 		this.id = id;
+		this.valor = valor;
 		this.fechaReserva = fechaReserva;
 		this.fechaDevolucion = fechaDevolucion;
-		this.tipoReserva = tipoReserva;
+		this.tipoReserva = tipoReserva.name();
 	}
 	
 	public void setPeliculaId(Long peliculaId) {

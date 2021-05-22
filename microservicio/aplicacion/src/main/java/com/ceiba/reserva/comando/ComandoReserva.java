@@ -1,7 +1,5 @@
 package com.ceiba.reserva.comando;
 
-import java.util.Date;
-
 import com.ceiba.reserva.modelo.entidad.TipoReserva;
 
 import lombok.AllArgsConstructor;
@@ -17,8 +15,8 @@ public class ComandoReserva {
 	
 	private Long id;
 	private Double valor;
-	private Date fechaReserva;
-	private Date fechaDevolucion;
+	private String fechaReserva;
+	private String fechaDevolucion;
 	private TipoReserva tipoReserva;
 	private String nombre;
 }

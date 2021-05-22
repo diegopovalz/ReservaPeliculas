@@ -15,7 +15,7 @@ public class MapeoPelicula implements RowMapper<DtoPelicula>, MapperResult {
 		Long id = resultSet.getLong("id");
         String nombre = resultSet.getString("nombre");
         String autor = resultSet.getString("autor");
-        String descripcion = resultSet.getString("fecha_creacion");
+        String descripcion = resultSet.getString("descripcion");
         
 		return new DtoPelicula(id, nombre, autor, descripcion);
 	}
