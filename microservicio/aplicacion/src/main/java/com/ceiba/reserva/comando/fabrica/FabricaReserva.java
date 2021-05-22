@@ -18,7 +18,7 @@ import com.ceiba.reserva.modelo.entidad.Reserva;
 @Component
 public class FabricaReserva {
 
-	private static final String PELICULA_CON_NOMBRE_NO_EXISTE = "No existe ninguna película con el nombre asignado";
+	private static final String PELICULA_CON_NOMBRE_NO_EXISTE = "No existe ninguna pelicula con el nombre asignado";
 	private static final String FECHA_CON_FORMATO_INCORRECTO = "El formato de la fecha es incorrecto";
 
 	private final RepositorioPelicula repositorioPelicula;
