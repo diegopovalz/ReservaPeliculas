@@ -20,4 +20,5 @@ public class ComandoReserva {
 	private Date fechaReserva;
 	private Date fechaDevolucion;
 	private TipoReserva tipoReserva;
+	private String nombre;
 }

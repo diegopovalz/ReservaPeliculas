@@ -1,0 +1,1 @@
+insert into pelicula (nombre, autor, descripcion) values (:nombre, :autor, :descripcion)

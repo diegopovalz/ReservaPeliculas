@@ -4,41 +4,24 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import com.ceiba.pelicula.modelo.entidad.Pelicula;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@Entity
-@Table(name = "reservas")
 public class Reserva {
 
-	private static final String DEBE_INGRESAR_VALOR = "";
-	private static final String DEBE_INGRESAR_FECHA_RESERVA = "";
-	private static final String DEBE_INGRESAR_FECHA_DEVOLUCION = "";
-	private static final String DEBE_INGRESAR_TIPO_RESERVA = "";
+	private static final String DEBE_INGRESAR_VALOR = "Debe ingresar un valor para la reserva";
+	private static final String DEBE_INGRESAR_FECHA_RESERVA = "Debe ingresar una fecha de reserva";
+	private static final String DEBE_INGRESAR_FECHA_DEVOLUCION = "Debe ingresar una fecha de devolucion";
+	private static final String DEBE_INGRESAR_TIPO_RESERVA = "Debe ingresar un tipo de reserva";
 	
-	@Id
-	@GeneratedValue
 	private Long id;
 	private Double valor;
 	private Date fechaReserva;
 	private Date fechaDevolucion;
 	private TipoReserva tipoReserva;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pelicula_id", referencedColumnName = "id")
-	private Pelicula pelicula;
+	private Long peliculaId;
 	
 	public Reserva(Long id, Double valor, Date fechaReserva, Date fechaDevolucion, TipoReserva tipoReserva) {
 		validarObligatorio(valor, DEBE_INGRESAR_VALOR);
@@ -50,6 +33,10 @@ public class Reserva {
 		this.fechaReserva = fechaReserva;
 		this.fechaDevolucion = fechaDevolucion;
 		this.tipoReserva = tipoReserva;
+	}
+	
+	public void setPeliculaId(Long peliculaId) {
+		this.peliculaId = peliculaId;
 	}
 	
 }

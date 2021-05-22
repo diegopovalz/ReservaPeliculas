@@ -6,7 +6,7 @@ import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
 
 public class ServicioCrearPelicula {
 	
-	private static final String PELICULA_YA_EXISTE = "";
+	private static final String PELICULA_YA_EXISTE = "Ya existe una pelicula con el nombre ingresado";
 	
 	private final RepositorioPelicula repositorioPelicula;
 	

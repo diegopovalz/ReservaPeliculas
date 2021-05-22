@@ -14,7 +14,7 @@ public class FabricaPelicula {
 				pelicula.getNombre(), 
 				pelicula.getAutor(), 
 				pelicula.getDescripcion(), 
-				pelicula.isEstaReservado()
+				pelicula.getEstaReservado()
 		);
 	}
 }

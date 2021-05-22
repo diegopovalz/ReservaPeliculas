@@ -15,5 +15,5 @@ public class ComandoPelicula {
 	private String nombre;
 	private String autor;
 	private String descripcion;
-	private boolean estaReservado;
+	private String estaReservado;
 }
