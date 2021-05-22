@@ -5,9 +5,6 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitud;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
@@ -21,8 +18,6 @@ public class Usuario {
 
     private static final int LONGITUD_MINIMA_CLAVE = 4;
 
-    @Id
-    @GeneratedValue
     private Long id;
     private String nombre;
     private String clave;
