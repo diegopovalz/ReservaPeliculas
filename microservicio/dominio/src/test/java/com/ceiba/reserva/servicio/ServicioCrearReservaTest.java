@@ -14,7 +14,7 @@ public class ServicioCrearReservaTest {
 		ReservaTestDataBuilder reserva = new ReservaTestDataBuilder().conTipoReserva(null);
 		
 		//Act - Assert
-		BasePrueba.assertThrows(() -> reserva.build(), ExcepcionValorObligatorio.class, "La reserva debe tener un tipo de reserva");
+		BasePrueba.assertThrows(() -> reserva.build(), ExcepcionValorObligatorio.class, "Debe ingresar un tipo de reserva");
 	}
 	
 	@Test
@@ -23,7 +23,7 @@ public class ServicioCrearReservaTest {
 		ReservaTestDataBuilder reserva = new ReservaTestDataBuilder().conFechaReserva(null);
 		
 		//Act - Assert
-		BasePrueba.assertThrows(() -> reserva.build(), ExcepcionValorObligatorio.class, "La pelicula debe tener una fecha de reserva");
+		BasePrueba.assertThrows(() -> reserva.build(), ExcepcionValorObligatorio.class, "Debe ingresar una fecha de reserva");
 	}
 	
 	@Test
@@ -32,6 +32,6 @@ public class ServicioCrearReservaTest {
 		ReservaTestDataBuilder reserva = new ReservaTestDataBuilder().conFechaDevolucion(null);
 		
 		//Act - Assert
-		BasePrueba.assertThrows(() -> reserva.build(), ExcepcionValorObligatorio.class, "La pelicula debe tener una fecha de devolucion");
+		BasePrueba.assertThrows(() -> reserva.build(), ExcepcionValorObligatorio.class, "Debe ingresar una fecha de devolucion");
 	}
 }
