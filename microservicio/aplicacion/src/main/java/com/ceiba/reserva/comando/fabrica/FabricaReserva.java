@@ -34,17 +34,16 @@ public class FabricaReserva {
 		validarPeliculaExiste(comandoReserva.getNombre());
 		Date fechaReserva = convertirFecha(comandoReserva.getFechaReserva());
 		Date fechaDevolucion = convertirFecha(comandoReserva.getFechaDevolucion());
+		Long peliculaId = this.daoPelicula.encontrarId(comandoReserva.getNombre());
 		
-		Reserva reserva = new Reserva(
+		return new Reserva(
 				comandoReserva.getId(), 
 				comandoReserva.getValor(), 
 				fechaReserva,
 				fechaDevolucion, 
-				comandoReserva.getTipoReserva()
+				comandoReserva.getTipoReserva(),
+				peliculaId
 		);
-		
-		reserva.setPeliculaId(this.daoPelicula.encontrarId(comandoReserva.getNombre()));
-		return reserva;
 	}
 	
 	private void validarPeliculaExiste(String nombre) {

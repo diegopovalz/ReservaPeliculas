@@ -23,7 +23,7 @@ public class Reserva {
 	private String tipoReserva;
 	private Long peliculaId;
 	
-	public Reserva(Long id, Double valor, Date fechaReserva, Date fechaDevolucion, TipoReserva tipoReserva) {
+	public Reserva(Long id, Double valor, Date fechaReserva, Date fechaDevolucion, TipoReserva tipoReserva, Long peliculaId) {
 		validarObligatorio(valor, DEBE_INGRESAR_VALOR);
 		validarObligatorio(fechaReserva, DEBE_INGRESAR_FECHA_RESERVA);
 		validarObligatorio(fechaDevolucion, DEBE_INGRESAR_FECHA_DEVOLUCION);
@@ -34,9 +34,6 @@ public class Reserva {
 		this.fechaReserva = (Date) fechaReserva.clone();
 		this.fechaDevolucion = (Date) fechaDevolucion.clone();
 		this.tipoReserva = tipoReserva.name();
-	}
-	
-	public void setPeliculaId(Long peliculaId) {
 		this.peliculaId = peliculaId;
 	}
 	
