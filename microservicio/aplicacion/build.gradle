@@ -13,6 +13,7 @@ dependencies {
 
 	implementation project(':dominio')
 	implementation project(':comun:comun-aplicacion')
+	implementation project(':comun:comun-dominio')
 	implementation project.ext.springtxt
 
 	compileOnly project.ext.lombok

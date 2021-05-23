@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionFormatoIncorrecto;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
+import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
@@ -35,6 +37,8 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
         CODIGOS_ESTADO.put(ExcepcionTecnica.class.getSimpleName(), HttpStatus.INTERNAL_SERVER_ERROR.value());
         
         //en caso de tener otra excepcion matricularla aca
+        CODIGOS_ESTADO.put(ExcepcionNoExiste.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(ExcepcionFormatoIncorrecto.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
     }
 
     @ExceptionHandler(Exception.class)

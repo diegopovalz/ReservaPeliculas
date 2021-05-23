@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import com.ceiba.excepcion.ExcepcionFormatoIncorrecto;
+import com.ceiba.dominio.excepcion.ExcepcionFormatoIncorrecto;
 
 public class FechaUtiles {
 	
@@ -36,7 +36,7 @@ public class FechaUtiles {
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatoFecha);
 			return LocalDate.parse(fecha, formato);
 		} catch(IllegalArgumentException e) {
-			throw new ExcepcionFormatoIncorrecto(FORMATO_INVALIDO);
+			throw new IllegalArgumentException(FORMATO_INVALIDO);
 		} catch (DateTimeParseException e) {
 			throw new ExcepcionFormatoIncorrecto(FECHA_INVALIDA);
 		}
@@ -47,7 +47,7 @@ public class FechaUtiles {
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatoFecha);
 			return fecha.format(formato);
 		} catch(IllegalArgumentException e) {
-			throw new ExcepcionFormatoIncorrecto(FORMATO_INVALIDO);
+			throw new IllegalArgumentException(FORMATO_INVALIDO);
 		} catch (DateTimeException e) {
 			throw new ExcepcionFormatoIncorrecto(FECHA_NO_CONVERTIDA);
 		}

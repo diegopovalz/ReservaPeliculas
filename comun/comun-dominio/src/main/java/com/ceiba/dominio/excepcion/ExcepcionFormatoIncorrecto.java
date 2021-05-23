@@ -1,4 +1,4 @@
-package com.ceiba.excepcion;
+package com.ceiba.dominio.excepcion;
 
 public class ExcepcionFormatoIncorrecto extends RuntimeException {
 	
