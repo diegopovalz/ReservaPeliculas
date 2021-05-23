@@ -1,7 +1,9 @@
 package com.ceiba.pelicula.modelo.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
 @AllArgsConstructor
 public class DtoPelicula {
 	private Long id;
@@ -9,16 +11,4 @@ public class DtoPelicula {
 	private String autor;
 	private String descripcion;
 	
-	public Long getId() {
-		return id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public String getAutor() {
-		return autor;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
 }

@@ -4,8 +4,10 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 import java.util.Date;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @NoArgsConstructor
 public class Reserva {
 
@@ -29,33 +31,9 @@ public class Reserva {
 		
 		this.id = id;
 		this.valor = valor;
-		this.fechaReserva = fechaReserva;
-		this.fechaDevolucion = fechaDevolucion;
+		this.fechaReserva = (Date) fechaReserva.clone();
+		this.fechaDevolucion = (Date) fechaDevolucion.clone();
 		this.tipoReserva = tipoReserva.name();
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-	
-	public Date getFechaReserva() {
-		return fechaReserva;
-	}
-
-	public Date getFechaDevolucion() {
-		return fechaDevolucion;
-	}
-
-	public String getTipoReserva() {
-		return tipoReserva;
-	}
-
-	public Long getPeliculaId() {
-		return peliculaId;
 	}
 	
 	public void setPeliculaId(Long peliculaId) {

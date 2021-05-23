@@ -3,8 +3,10 @@ package com.ceiba.pelicula.comando;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ComandoPelicula {
@@ -14,21 +16,5 @@ public class ComandoPelicula {
 	private String autor;
 	private String descripcion;
 	private String estaReservado;
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	public void setEstaReservado(String estaReservado) {
-		this.estaReservado = estaReservado;
-	}
 	
 }
