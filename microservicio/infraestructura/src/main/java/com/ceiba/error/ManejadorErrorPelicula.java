@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.ceiba.excepcion.ExcepcionFormatoIncorrecto;
 import com.ceiba.excepcion.ExcepcionNoExiste;
 import com.ceiba.infraestructura.error.Error;
 
@@ -17,9 +18,10 @@ public class ManejadorErrorPelicula extends ResponseEntityExceptionHandler {
 
     public ManejadorErrorPelicula() {
         CODIGOS_ESTADO.put(ExcepcionNoExiste.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(ExcepcionFormatoIncorrecto.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
     }
 
-    @ExceptionHandler(value = {ExcepcionNoExiste.class})
+    @ExceptionHandler(value = {ExcepcionFormatoIncorrecto.class, ExcepcionNoExiste.class})
     public final ResponseEntity<Error> handleAllExceptions(Exception exception) {
         String excepcionNombre = exception.getClass().getSimpleName();
         String mensaje = exception.getMessage();
