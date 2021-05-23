@@ -8,9 +8,10 @@ import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.comando.fabrica.FabricaReserva;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
+import com.ceiba.utiles.FechaUtiles;
 
 @Component
-public class ManejadorCrearReserva implements ManejadorComandoRespuesta<ComandoReserva, ComandoRespuesta<Long>> {
+public class ManejadorCrearReserva implements ManejadorComandoRespuesta<ComandoReserva, ComandoRespuesta<String>> {
 
 	private final FabricaReserva fabricaReserva;
 	private final ServicioCrearReserva servicioCrearReserva;
@@ -20,9 +21,11 @@ public class ManejadorCrearReserva implements ManejadorComandoRespuesta<ComandoR
 		this.servicioCrearReserva = servicioCrearReserva;
 	}
 	
-	public ComandoRespuesta<Long> ejecutar(ComandoReserva comandoReserva) {
+	public ComandoRespuesta<String> ejecutar(ComandoReserva comandoReserva) {
 		Reserva reserva = this.fabricaReserva.crear(comandoReserva);
-		return new ComandoRespuesta<>(this.servicioCrearReserva.crear(reserva));
+		this.servicioCrearReserva.crear(reserva);
+		String fechaDevolucion = FechaUtiles.convertirFechaAString(reserva.getFechaDevolucion(), "dd-MM-yyyy");
+		return new ComandoRespuesta<>(fechaDevolucion);
 	}
 
 }

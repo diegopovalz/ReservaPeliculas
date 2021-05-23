@@ -25,7 +25,7 @@ public class ComandoControladorReserva {
 	
 	@PostMapping
 	@ApiOperation("Crear reserva")
-	public ComandoRespuesta<Long> crear(@RequestBody ComandoReserva comandoReserva) {
+	public ComandoRespuesta<String> crear(@RequestBody ComandoReserva comandoReserva) {
 		return this.manejadorCrearReserva.ejecutar(comandoReserva);
 	}
 }

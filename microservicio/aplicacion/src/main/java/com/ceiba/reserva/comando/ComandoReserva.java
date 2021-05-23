@@ -14,9 +14,8 @@ import lombok.Setter;
 public class ComandoReserva {
 	
 	private Long id;
-	private Double valor;
+	private TipoReserva tipoReserva;
 	private String fechaReserva;
 	private String fechaDevolucion;
-	private TipoReserva tipoReserva;
 	private String nombre;
 }

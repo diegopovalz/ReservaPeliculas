@@ -3,7 +3,7 @@ package com.ceiba.reserva.modelo.entidad;
 import java.util.stream.Stream;
 
 public enum TipoReserva {
-
+	//NOMBRE(Valor, Dias reserva)
 	ESTANDAR(20d, 6),
 	PREMIUM(50d, 10);
 	
