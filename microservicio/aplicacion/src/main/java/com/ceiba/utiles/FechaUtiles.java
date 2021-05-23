@@ -1,17 +1,15 @@
 package com.ceiba.utiles;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
-import com.ceiba.dominio.excepcion.ExcepcionFormatoIncorrecto;
+import static com.ceiba.dominio.ValidadorArgumento.validarFechaConvertible;
+import static com.ceiba.dominio.ValidadorArgumento.validarFormatoAplicable;
 
 public class FechaUtiles {
 	
-	private static final String FORMATO_INVALIDO = "El formato de la fecha es invalido";
+	private static final String FORMATO_INVALIDO = "La fecha no pudo ser convertida debido a que el formato %s no es valido";
 	private static final String FECHA_INVALIDA = "La fecha ingresada no cumple el formato asignado";
-	private static final String FECHA_NO_CONVERTIDA = "La fecha ingresada no puede ser convertida con el formato asignado";
 	
 	private FechaUtiles() { }
 
@@ -32,24 +30,15 @@ public class FechaUtiles {
 	}
 	
 	public static LocalDate convertirStringAFecha(String fecha, String formatoFecha) {
-		try {
-			DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatoFecha);
-			return LocalDate.parse(fecha, formato);
-		} catch(IllegalArgumentException e) {
-			throw new IllegalArgumentException(FORMATO_INVALIDO);
-		} catch (DateTimeParseException e) {
-			throw new ExcepcionFormatoIncorrecto(FECHA_INVALIDA);
-		}
+		validarFormatoAplicable(fecha, formatoFecha, FECHA_INVALIDA);
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatoFecha);
+		return LocalDate.parse(fecha, formato);
+		
 	}
 	
 	public static String convertirFechaAString(LocalDate fecha, String formatoFecha) {
-		try {
-			DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatoFecha);
-			return fecha.format(formato);
-		} catch(IllegalArgumentException e) {
-			throw new IllegalArgumentException(FORMATO_INVALIDO);
-		} catch (DateTimeException e) {
-			throw new ExcepcionFormatoIncorrecto(FECHA_NO_CONVERTIDA);
-		}
+		validarFechaConvertible(fecha, formatoFecha, String.format(FORMATO_INVALIDO, formatoFecha));
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatoFecha);
+		return fecha.format(formato);
 	}
 }
