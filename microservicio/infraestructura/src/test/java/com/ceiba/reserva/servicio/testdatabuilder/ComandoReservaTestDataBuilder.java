@@ -7,7 +7,6 @@ public class ComandoReservaTestDataBuilder {
 
 	private Long id;
 	private String fechaReserva;
-	private String fechaDevolucion;
 	private String tipoReserva;
 	private String nombre;
 	
@@ -33,6 +32,6 @@ public class ComandoReservaTestDataBuilder {
 	}
 	
 	public ComandoReserva build() {
-		return new ComandoReserva(id, TipoReserva.deNombre(tipoReserva), fechaReserva, fechaDevolucion, nombre);
+		return new ComandoReserva(id, TipoReserva.deNombre(tipoReserva), fechaReserva, nombre);
 	}
 }

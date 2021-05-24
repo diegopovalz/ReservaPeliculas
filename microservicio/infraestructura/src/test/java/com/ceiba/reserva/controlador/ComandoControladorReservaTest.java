@@ -43,6 +43,18 @@ public class ComandoControladorReservaTest {
     }
     
     @Test
+    public void debeTirarErrorCuandoReservaEnFinDeSemana() throws Exception {
+    	// Arrange
+    	ComandoReserva reserva = new ComandoReservaTestDataBuilder().conFechaReserva("23-05-2021").build();
+
+        // Act - Assert
+        mocMvc.perform(post("/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(reserva)))
+                .andExpect(status().isBadRequest());
+    }
+    
+    @Test
     public void debeCrearReservaEstandar() throws Exception {
     	// Arrange
     	ComandoReserva reserva = new ComandoReservaTestDataBuilder().build();
