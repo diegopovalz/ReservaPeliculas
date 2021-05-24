@@ -8,7 +8,7 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
 import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
-import com.ceiba.pelicula.testdatabuilder.PeliculaTestDataBuilder;
+import com.ceiba.pelicula.servicio.testdatabuilder.PeliculaTestDataBuilder;
 
 public class ServicioCrearPeliculaTest {
 

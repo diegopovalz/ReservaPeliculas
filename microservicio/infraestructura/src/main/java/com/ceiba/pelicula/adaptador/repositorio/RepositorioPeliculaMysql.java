@@ -18,6 +18,9 @@ public class RepositorioPeliculaMysql implements RepositorioPelicula {
 
     @SqlStatement(namespace="pelicula", value="existe")
     private static String sqlExiste;
+
+    @SqlStatement(namespace="pelicula", value="estaReservada")
+    private static String sqlEstaReservada;
     
     public RepositorioPeliculaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -33,6 +36,14 @@ public class RepositorioPeliculaMysql implements RepositorioPelicula {
 	@Override
 	public Long crear(Pelicula pelicula) {
 		return this.customNamedParameterJdbcTemplate.crear(pelicula, sqlCrear);
+	}
+
+	@Override
+	public boolean estaReservada(String nombre) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("nombre", nombre);
+        paramSource.addValue("estaReservada", "T");
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEstaReservada, paramSource, Boolean.class);
 	}
 
 }

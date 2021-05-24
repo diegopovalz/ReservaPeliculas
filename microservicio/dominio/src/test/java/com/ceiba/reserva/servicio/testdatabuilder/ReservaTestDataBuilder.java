@@ -1,4 +1,4 @@
-package com.ceiba.reserva.testdatabuilder;
+package com.ceiba.reserva.servicio.testdatabuilder;
 
 import java.time.LocalDate;
 
