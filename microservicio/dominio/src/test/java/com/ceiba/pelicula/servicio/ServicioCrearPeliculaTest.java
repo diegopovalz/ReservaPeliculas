@@ -2,6 +2,7 @@ package com.ceiba.pelicula.servicio;
 
 import org.junit.Test;
 import org.mockito.Mockito;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
@@ -49,5 +50,17 @@ public class ServicioCrearPeliculaTest {
         
         // Act - Assert
         BasePrueba.assertThrows(() -> servicioCrearPelicula.crear(pelicula), ExcepcionDuplicidad.class, "Ya existe una pelicula con el nombre ingresado");
+    }
+	
+	@Test
+    public void validarPeliculaNuevaQueNoExisteNoTiraExcepcionTest() {
+        // Arrange
+        Pelicula pelicula = new PeliculaTestDataBuilder().conNombre("PeliculaPrueba1").build();
+        RepositorioPelicula repositorioPelicula = Mockito.mock(RepositorioPelicula.class);
+        Mockito.when(repositorioPelicula.existe(Mockito.anyString())).thenReturn(false);
+        ServicioCrearPelicula servicioCrearPelicula = new ServicioCrearPelicula(repositorioPelicula);
+        
+        // Act - Assert
+        assertDoesNotThrow(() -> servicioCrearPelicula.crear(pelicula));
     }
 }
