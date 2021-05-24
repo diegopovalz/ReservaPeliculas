@@ -5,6 +5,9 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -29,5 +32,16 @@ public class ServicioCrearUsuarioTest {
         ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioUsuario);
         // act - assert
         BasePrueba.assertThrows(() -> servicioCrearUsuario.ejecutar(usuario), ExcepcionDuplicidad.class,"El usuario ya existe en el sistema");
+    }
+    
+    @Test
+    public void validarUsuarioNuevoNoTiraErrorTest() {
+        // arrange
+        Usuario usuario = new UsuarioTestDataBuilder().build();
+        RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
+        Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
+        ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioUsuario);
+        // act - assert
+        assertDoesNotThrow(() -> servicioCrearUsuario.ejecutar(usuario));
     }
 }
