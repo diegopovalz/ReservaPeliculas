@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import static com.ceiba.dominio.ValidadorArgumento.validarFechaConvertible;
 import static com.ceiba.dominio.ValidadorArgumento.validarFormatoAplicable;
 
-public class FechaUtiles {
+public final class FechaUtiles {
 	
 	private static final String FORMATO_INVALIDO = "La fecha no pudo ser convertida debido a que el formato %s no es valido";
 	private static final String FECHA_INVALIDA = "La fecha ingresada no cumple el formato asignado";

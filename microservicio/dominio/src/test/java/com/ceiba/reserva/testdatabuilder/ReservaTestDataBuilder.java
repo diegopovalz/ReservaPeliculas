@@ -16,6 +16,7 @@ public class ReservaTestDataBuilder {
 	public ReservaTestDataBuilder() {
 		this.fechaDevolucion = LocalDate.now();
 		this.fechaReserva = LocalDate.now();
+		this.peliculaId = 1L;
 	}
 	
 	public ReservaTestDataBuilder conTipoReserva(String tipoReserva) {

@@ -3,10 +3,8 @@ package com.ceiba.pelicula.modelo.entidad;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 public class Pelicula {
 
 	private static final String DEBE_INGRESAR_NOMBRE = "Debe ingresar un nombre de la pelicula";

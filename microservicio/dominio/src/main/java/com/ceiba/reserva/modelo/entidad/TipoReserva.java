@@ -2,6 +2,8 @@ package com.ceiba.reserva.modelo.entidad;
 
 import java.util.stream.Stream;
 
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+
 public enum TipoReserva {
 	//NOMBRE(Valor, Dias reserva)
 	ESTANDAR(20d, 6),
@@ -24,9 +26,12 @@ public enum TipoReserva {
 	}
 	
 	public static TipoReserva deNombre(String nombreTipo) {
+		if(nombreTipo == null) {
+			return null;
+		}
 		return Stream.of(TipoReserva.values())
 				.filter(t -> t.name().equals(nombreTipo))
 				.findFirst()
-				.orElse(null);
+				.orElseThrow(() -> new ExcepcionValorInvalido(String.format("No existe el tipo de reserva %s", nombreTipo)));
 	}
 }

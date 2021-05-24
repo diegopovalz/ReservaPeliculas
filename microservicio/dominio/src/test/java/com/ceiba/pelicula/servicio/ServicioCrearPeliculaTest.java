@@ -39,7 +39,7 @@ public class ServicioCrearPeliculaTest {
 		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionValorObligatorio.class, "Debe ingresar una descripcion de la pelicula");
 	}
 	
-	/*@Test
+	@Test
     public void validarPeliculaYaExisteTest() {
         // Arrange
         Pelicula pelicula = new PeliculaTestDataBuilder().build();
@@ -48,6 +48,6 @@ public class ServicioCrearPeliculaTest {
         ServicioCrearPelicula servicioCrearPelicula = new ServicioCrearPelicula(repositorioPelicula);
         
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearPelicula.crear(pelicula), ExcepcionDuplicidad.class, "La pelicula ya existe");
-    }*/
+        BasePrueba.assertThrows(() -> servicioCrearPelicula.crear(pelicula), ExcepcionDuplicidad.class, "Ya existe una pelicula con el nombre ingresado");
+    }
 }

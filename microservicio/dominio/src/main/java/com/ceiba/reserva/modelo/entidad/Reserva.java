@@ -5,10 +5,8 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import java.time.LocalDate;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 public class Reserva {
 
 	private static final String DEBE_INGRESAR_FECHA_RESERVA = "Debe ingresar una fecha de reserva";
