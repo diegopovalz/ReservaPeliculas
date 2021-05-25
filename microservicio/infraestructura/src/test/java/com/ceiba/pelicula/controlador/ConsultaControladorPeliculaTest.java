@@ -26,7 +26,7 @@ public class ConsultaControladorPeliculaTest {
 	private MockMvc mocMvc;
 
 	@Test
-	public void debeListarDosPeliculas() throws Exception {
+	public void debeListarTresPeliculas() throws Exception {
 		// Arrange
 
 		// Act - Assert
