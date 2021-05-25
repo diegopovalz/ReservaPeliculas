@@ -39,9 +39,9 @@ public class RepositorioPeliculaMysql implements RepositorioPelicula {
 	}
 
 	@Override
-	public boolean estaReservada(String nombre) {
+	public boolean estaReservada(Long id) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nombre", nombre);
+        paramSource.addValue("id", id);
         paramSource.addValue("estaReservada", "T");
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEstaReservada, paramSource, Boolean.class);
 	}

@@ -16,5 +16,5 @@ public class ComandoReserva {
 	private Long id;
 	private TipoReserva tipoReserva;
 	private String fechaReserva;
-	private String nombre;
+	private String nombrePelicula;
 }

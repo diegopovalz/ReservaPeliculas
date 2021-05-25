@@ -1,1 +1,1 @@
-select count(1) from pelicula where nombre = :nombre and esta_reservada = :estaReservada
+select count(1) from pelicula where id = :id and esta_reservada = :estaReservada

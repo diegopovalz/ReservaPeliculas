@@ -2,10 +2,20 @@ package com.ceiba.reserva.servicio;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 import com.ceiba.BasePrueba;
+import com.ceiba.dominio.excepcion.ExcepcionNoExiste;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
+import com.ceiba.reserva.modelo.entidad.Reserva;
+import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ReservaTestDataBuilder;
 
 public class ServicioCrearReservaTest {
@@ -58,5 +68,56 @@ public class ServicioCrearReservaTest {
 		
 		//Act - Assert
 		BasePrueba.assertThrows(() -> reserva.build(), ExcepcionValorObligatorio.class, "Debe ingresar una fecha de devolucion");
+	}
+	
+	@Test
+    public void validarReservaPeliculaNoReservadaTest() {
+        // Arrange
+		Reserva reserva = new ReservaTestDataBuilder().conTipoReserva("ESTANDAR").build();
+        
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        RepositorioPelicula repositorioPelicula = Mockito.mock(RepositorioPelicula.class);
+        Mockito.when(repositorioPelicula.estaReservada(Mockito.anyLong())).thenReturn(false);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, repositorioPelicula);
+        
+        // Act - Assert
+        assertDoesNotThrow(() -> servicioCrearReserva.crear(reserva));
+    }
+	
+	@Test
+    public void validarReservaPeliculaReservadaTest() {
+        // Arrange
+		Reserva reserva = new ReservaTestDataBuilder().conTipoReserva("ESTANDAR").build();
+        
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        RepositorioPelicula repositorioPelicula = Mockito.mock(RepositorioPelicula.class);
+        Mockito.when(repositorioPelicula.estaReservada(Mockito.anyLong())).thenReturn(true);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, repositorioPelicula);
+        
+        // Act - Assert
+        BasePrueba.assertThrows(() -> servicioCrearReserva.crear(reserva), ExcepcionNoExiste.class, "No existe ninguna pelicula con el nombre asignado que no este reservada");
+    }
+	
+	@Test
+	public void validarReservaConFechaReservaEnSemanaTest() {
+		//Arrange
+		Reserva reserva = new ReservaTestDataBuilder().conTipoReserva("ESTANDAR").build();
+		
+		//Act - Assert
+		assertTrue(reserva.getFechaReserva().getDayOfWeek() != DayOfWeek.SATURDAY && reserva.getFechaReserva().getDayOfWeek() != DayOfWeek.SUNDAY);
+	}
+	
+	@Test
+	public void validarReservaConFechaReservaEnFinDeSemanaTest() {
+		// Arrange
+		Reserva reserva = new ReservaTestDataBuilder().conFechaReserva(LocalDate.of(2021, 5, 22)).conTipoReserva("ESTANDAR").build();
+        
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        RepositorioPelicula repositorioPelicula = Mockito.mock(RepositorioPelicula.class);
+        Mockito.when(repositorioPelicula.estaReservada(Mockito.anyLong())).thenReturn(false);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, repositorioPelicula);
+		
+        // Act - Assert
+		BasePrueba.assertThrows(() -> servicioCrearReserva.crear(reserva), ExcepcionValorInvalido.class, "La reserva no puede ser realizada en fin de semana");
 	}
 }
