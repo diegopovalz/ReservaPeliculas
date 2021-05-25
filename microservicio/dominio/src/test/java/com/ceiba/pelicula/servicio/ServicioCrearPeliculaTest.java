@@ -2,7 +2,7 @@ package com.ceiba.pelicula.servicio;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;

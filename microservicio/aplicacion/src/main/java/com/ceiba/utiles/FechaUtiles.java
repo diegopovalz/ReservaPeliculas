@@ -13,7 +13,7 @@ public final class FechaUtiles {
 	
 	private FechaUtiles() { }
 
-	public static LocalDate agregarDias(LocalDate fechaInicial, int cantidadDias) {
+	public static LocalDate agregarDiasDevolucion(LocalDate fechaInicial, int cantidadDias) {
 		fechaInicial = fechaInicial.plusDays(cantidadDias);
 		switch(fechaInicial.getDayOfWeek()) {
 			case SATURDAY:

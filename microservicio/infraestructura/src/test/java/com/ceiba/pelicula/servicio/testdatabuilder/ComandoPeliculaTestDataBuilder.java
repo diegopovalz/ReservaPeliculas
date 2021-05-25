@@ -8,13 +8,13 @@ public class ComandoPeliculaTestDataBuilder {
 	private String nombre;
 	private String autor;
 	private String descripcion;
-	private String estaReservado;
+	private String estaReservada;
 	
 	public ComandoPeliculaTestDataBuilder() {
 		this.nombre = "Pelicula";
 		this.autor = "Autor2";
 		this.descripcion = "Descripcion2";
-		this.estaReservado = "F";
+		this.estaReservada = "F";
 	}
 	
 	public ComandoPeliculaTestDataBuilder conId(Long id) {
@@ -28,6 +28,6 @@ public class ComandoPeliculaTestDataBuilder {
 	}
 	
 	public ComandoPelicula build() {
-		return new ComandoPelicula(id, nombre, autor, descripcion, estaReservado);
+		return new ComandoPelicula(id, nombre, autor, descripcion, estaReservada);
 	}
 }

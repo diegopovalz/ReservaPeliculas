@@ -36,7 +36,7 @@ public class FabricaReserva {
 		Long peliculaId = this.daoPelicula.encontrarId(comandoReserva.getNombre());
 		LocalDate fechaReserva = FechaUtiles.convertirStringAFecha(comandoReserva.getFechaReserva(), "dd-MM-yyyy");
 		validarFechaEnSemana(fechaReserva);
-		LocalDate fechaDevolucion = FechaUtiles.agregarDias(fechaReserva, comandoReserva.getTipoReserva().getDiasReserva());
+		LocalDate fechaDevolucion = FechaUtiles.agregarDiasDevolucion(fechaReserva, comandoReserva.getTipoReserva().getDiasReserva());
 		
 		return new Reserva(
 				comandoReserva.getId(), 
