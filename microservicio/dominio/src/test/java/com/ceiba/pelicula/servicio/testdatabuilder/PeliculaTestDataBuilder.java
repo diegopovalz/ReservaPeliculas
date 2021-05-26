@@ -9,13 +9,13 @@ public class PeliculaTestDataBuilder {
 	private String nombre;
 	private String autor;
 	private String descripcion;
-	private EstadoPelicula estaReservado;
+	private String estadoPelicula;
 	
 	public PeliculaTestDataBuilder() {
 		this.nombre = "Prueba";
 		this.autor = "Autor";
 		this.descripcion = "Descripcion";
-		this.estaReservado = EstadoPelicula.SIN_RESERVAR;
+		this.estadoPelicula = "SIN_RESERVAR";
 	}
 	
 	public PeliculaTestDataBuilder conId(Long id) {
@@ -38,7 +38,12 @@ public class PeliculaTestDataBuilder {
 		return this;
 	}
 	
+	public PeliculaTestDataBuilder conEstado(String estadoPelicula) {
+		this.estadoPelicula = estadoPelicula;
+		return this;
+	}
+	
 	public Pelicula build() {
-		return new Pelicula(id, nombre, autor, descripcion, estaReservado);
+		return new Pelicula(id, nombre, autor, descripcion, EstadoPelicula.deNombre(estadoPelicula));
 	}
 }

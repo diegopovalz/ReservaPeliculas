@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
 import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
@@ -38,6 +39,42 @@ public class ServicioCrearPeliculaTest {
 		
 		//Act - Assert
 		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionValorObligatorio.class, "Debe ingresar una descripcion de la pelicula");
+	}
+	
+	@Test
+	public void validarPeliculaSinEstadoTest() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conEstado(null);
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionValorObligatorio.class, "La pelicula debe tener un estado");
+	}
+	
+	@Test
+	public void validarPeliculaConEstadoNoValidoTest() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conEstado("PRUEBA");
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionValorInvalido.class, "No existe el estado PRUEBA");
+	}
+	
+	@Test
+	public void validarPeliculaConEstadoSinReservarValidoTest() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conEstado("SIN_RESERVAR");
+		
+		//Act - Assert
+		assertDoesNotThrow(() -> pelicula.build());
+	}
+	
+	@Test
+	public void validarPeliculaConEstadoReservadaValidoTest() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conEstado("RESERVADA");
+		
+		//Act - Assert
+		assertDoesNotThrow(() -> pelicula.build());
 	}
 	
 	@Test

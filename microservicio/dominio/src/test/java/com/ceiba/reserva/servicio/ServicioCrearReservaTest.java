@@ -39,6 +39,24 @@ public class ServicioCrearReservaTest {
 	}
 	
 	@Test
+	public void validarReservaConTipoEstandarValidoTest() {
+		//Arrange
+		ReservaTestDataBuilder reserva = new ReservaTestDataBuilder().conTipoReserva("ESTANDAR");
+		
+		//Act - Assert
+		assertDoesNotThrow(() -> reserva.build());
+	}
+	
+	@Test
+	public void validarReservaConTipoPremiumValidoTest() {
+		//Arrange
+		ReservaTestDataBuilder reserva = new ReservaTestDataBuilder().conTipoReserva("PREMIUM");
+		
+		//Act - Assert
+		assertDoesNotThrow(() -> reserva.build());
+	}
+	
+	@Test
 	public void validarReservaConTipoEstandarCuesta20Test() {
 		ReservaTestDataBuilder reserva = new ReservaTestDataBuilder().conTipoReserva("ESTANDAR");
 		

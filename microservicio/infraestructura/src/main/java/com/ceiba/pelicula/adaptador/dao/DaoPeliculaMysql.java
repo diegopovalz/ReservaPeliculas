@@ -21,9 +21,6 @@ public class DaoPeliculaMysql implements DaoPelicula {
 	@SqlStatement(namespace="pelicula", value="encontrar")
     private static String sqlEncontrar;
 	
-	@SqlStatement(namespace="pelicula", value="encontrarId")
-    private static String sqlEncontrarId;
-	
 	public DaoPeliculaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -38,13 +35,6 @@ public class DaoPeliculaMysql implements DaoPelicula {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nombre", name);
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrar, paramSource, new MapeoPelicula());
-	}
-
-	@Override
-	public Long encontrarId(String nombre) {
-		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nombre", nombre);
-		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrarId, paramSource, Long.class);
 	}
 
 }

@@ -8,5 +8,4 @@ public interface DaoPelicula {
 
 	List<DtoPelicula> listar();
 	DtoPelicula encontrar(String name);
-	Long encontrarId(String nombre);
 }
