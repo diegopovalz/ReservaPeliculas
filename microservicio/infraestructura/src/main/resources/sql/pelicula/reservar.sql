@@ -1,3 +1,3 @@
 update pelicula
-set esta_reservada = :estaReservada
-where id = :id
+set estado_pelicula = :estadoPelicula
+where nombre = :nombre

@@ -3,6 +3,7 @@ package com.ceiba.pelicula.comando.fabrica;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.pelicula.comando.ComandoPelicula;
+import com.ceiba.pelicula.modelo.entidad.EstadoPelicula;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
 
 @Component
@@ -14,7 +15,7 @@ public class FabricaPelicula {
 				pelicula.getNombre(), 
 				pelicula.getAutor(), 
 				pelicula.getDescripcion(), 
-				"F"
+				EstadoPelicula.SIN_RESERVAR
 		);
 	}
 }

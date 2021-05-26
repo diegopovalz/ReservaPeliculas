@@ -1,5 +1,6 @@
 package com.ceiba.reserva.comando;
 
+import com.ceiba.pelicula.modelo.entidad.Pelicula;
 import com.ceiba.reserva.modelo.entidad.TipoReserva;
 
 import lombok.AllArgsConstructor;
@@ -16,5 +17,5 @@ public class ComandoReserva {
 	private Long id;
 	private TipoReserva tipoReserva;
 	private String fechaReserva;
-	private String nombrePelicula;
+	private Pelicula pelicula;
 }

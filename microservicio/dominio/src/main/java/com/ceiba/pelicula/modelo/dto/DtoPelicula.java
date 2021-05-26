@@ -10,6 +10,6 @@ public class DtoPelicula {
 	private String nombre;
 	private String autor;
 	private String descripcion;
-	private String estaReservada;
+	private String estadoPelicula;
 	
 }

@@ -1,5 +1,7 @@
 package com.ceiba.reserva.controlador;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +27,7 @@ public class ComandoControladorReserva {
 	
 	@PostMapping
 	@ApiOperation("Crear reserva")
-	public ComandoRespuesta<String> crear(@RequestBody ComandoReserva comandoReserva) {
+	public ComandoRespuesta<LocalDate> crear(@RequestBody ComandoReserva comandoReserva) {
 		return this.manejadorCrearReserva.ejecutar(comandoReserva);
 	}
 }

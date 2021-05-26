@@ -3,6 +3,9 @@ package com.ceiba.reserva.controlador;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
+import static org.hamcrest.core.Is.is;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.ceiba.ApplicationMock;
+import com.ceiba.pelicula.modelo.entidad.EstadoPelicula;
+import com.ceiba.pelicula.modelo.entidad.Pelicula;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.controlador.ComandoControladorReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ComandoReservaTestDataBuilder;
@@ -29,54 +34,68 @@ public class ComandoControladorReservaTest {
 
     @Autowired
     private MockMvc mocMvc;
-    
-    @Test
-    public void debeTirarErrorCuandoPeliculaNoExiste() throws Exception {
-    	// Arrange
-    	ComandoReserva reserva = new ComandoReservaTestDataBuilder().conNombre("PeliculaPrueba").build();
 
-        // Act - Assert
-        mocMvc.perform(post("/")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(reserva)))
-                .andExpect(status().isBadRequest());
-    }
-    
-    @Test
-    public void debeTirarErrorCuandoReservaEnFinDeSemana() throws Exception {
-    	// Arrange
-    	ComandoReserva reserva = new ComandoReservaTestDataBuilder().conFechaReserva("23-05-2021").build();
-
-        // Act - Assert
-        mocMvc.perform(post("/")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(reserva)))
-                .andExpect(status().isBadRequest());
-    }
-    
     @Test
     public void debeCrearReservaEstandar() throws Exception {
     	// Arrange
-    	ComandoReserva reserva = new ComandoReservaTestDataBuilder().build();
+    	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
+    			.conPelicula(
+						new Pelicula(null, "Pelicula", "", "", EstadoPelicula.SIN_RESERVAR)
+				).build();
 
         // Act - Assert
         mocMvc.perform(post("/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(reserva)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': '31-05-2021'}"));
+                .andExpect(content().json("{'valor': '2021-05-31'}"));
     }
     
     @Test
     public void debeCrearReservaPremium() throws Exception {
     	// Arrange
-    	ComandoReserva reserva = new ComandoReservaTestDataBuilder().conNombre("Test").conTipoReserva("PREMIUM").build();
+    	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
+    			.conPelicula(
+						new Pelicula(null, "Test", "", "", EstadoPelicula.SIN_RESERVAR)
+				).conTipoReserva("PREMIUM").build();
 
         // Act - Assert
         mocMvc.perform(post("/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(reserva)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': '03-06-2021'}"));
+                .andExpect(content().json("{'valor': '2021-06-03'}"));
+    }
+    
+    @Test
+    public void debeTirarErrorCuandoPeliculaNoExiste() throws Exception {
+    	// Arrange
+    	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
+    			.conPelicula(
+    					new Pelicula(null, "PruebaPelicula1", "", "", EstadoPelicula.SIN_RESERVAR)
+    			).build();
+
+        // Act - Assert
+        mocMvc.perform(post("/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(reserva)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.mensaje", is("No existe ninguna pelicula con el nombre asignado")));
+    }
+    
+    @Test
+    public void debeTirarErrorCuandoPeliculaReservada() throws Exception {
+    	// Arrange
+    	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
+    			.conPelicula(
+						new Pelicula(null, "Movie", "", "", EstadoPelicula.RESERVADA)
+				).build();
+
+        // Act - Assert
+        mocMvc.perform(post("/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(reserva)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.mensaje", is("No existe ninguna pelicula con el nombre asignado que no este reservada")));
     }
 }

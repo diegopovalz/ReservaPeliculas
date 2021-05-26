@@ -1,2 +1,2 @@
-select id,nombre,autor,descripcion,esta_reservada
+select id,nombre,autor,descripcion,estado_pelicula
 from pelicula where nombre = :nombre

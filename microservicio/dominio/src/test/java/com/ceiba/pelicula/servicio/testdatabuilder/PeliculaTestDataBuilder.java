@@ -1,5 +1,6 @@
 package com.ceiba.pelicula.servicio.testdatabuilder;
 
+import com.ceiba.pelicula.modelo.entidad.EstadoPelicula;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
 
 public class PeliculaTestDataBuilder {
@@ -8,13 +9,13 @@ public class PeliculaTestDataBuilder {
 	private String nombre;
 	private String autor;
 	private String descripcion;
-	private String estaReservado;
+	private EstadoPelicula estaReservado;
 	
 	public PeliculaTestDataBuilder() {
 		this.nombre = "Prueba";
 		this.autor = "Autor";
 		this.descripcion = "Descripcion";
-		this.estaReservado = "F";
+		this.estaReservado = EstadoPelicula.SIN_RESERVAR;
 	}
 	
 	public PeliculaTestDataBuilder conId(Long id) {

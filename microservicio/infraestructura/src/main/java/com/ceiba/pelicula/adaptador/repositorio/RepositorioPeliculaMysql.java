@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.pelicula.modelo.entidad.EstadoPelicula;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
 import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
 
@@ -39,10 +40,10 @@ public class RepositorioPeliculaMysql implements RepositorioPelicula {
 	}
 
 	@Override
-	public boolean estaReservada(Long id) {
+	public boolean estaReservada(String nombre) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
-        paramSource.addValue("estaReservada", "T");
+        paramSource.addValue("nombre", nombre);
+        paramSource.addValue("estadoPelicula", EstadoPelicula.RESERVADA.name());
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEstaReservada, paramSource, Boolean.class);
 	}
 

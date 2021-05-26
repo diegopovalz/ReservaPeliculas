@@ -1,1 +1,1 @@
-insert into pelicula (nombre, autor, descripcion, esta_reservada) values (:nombre, :autor, :descripcion, :estaReservado)
+insert into pelicula (nombre, autor, descripcion, estado_pelicula) values (:nombre, :autor, :descripcion, :estadoPelicula)

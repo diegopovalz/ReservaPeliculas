@@ -1,5 +1,6 @@
 package com.ceiba.pelicula.controlador;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -16,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.ceiba.ApplicationMock;
 import com.ceiba.pelicula.comando.ComandoPelicula;
 import com.ceiba.pelicula.controlador.ComandoControladorPelicula;
+import com.ceiba.pelicula.puerto.repositorio.RepositorioPelicula;
 import com.ceiba.pelicula.servicio.testdatabuilder.ComandoPeliculaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,6 +32,9 @@ public class ComandoControladorPeliculaTest {
     @Autowired
     private MockMvc mocMvc;
     
+    @Autowired
+    private RepositorioPelicula repositorioPelicula;
+    
     @Test
     public void debeCrearUnaPelicula() throws Exception {
     	// Arrange
@@ -40,7 +45,9 @@ public class ComandoControladorPeliculaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(pelicula)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 3}"));
+                .andExpect(content().json("{'valor': 4}"));
+        
+        assertTrue(repositorioPelicula.existe(pelicula.getNombre()));
     }
     
     @Test
