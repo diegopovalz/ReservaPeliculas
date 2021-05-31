@@ -40,7 +40,7 @@ public class ComandoControladorReservaTest {
     	// Arrange
     	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
     			.conPelicula(
-						new Pelicula(null, "Pelicula", "", "", EstadoPelicula.SIN_RESERVAR)
+						new Pelicula(null, "Pelicula", "Autor", "Descripcion", EstadoPelicula.SIN_RESERVAR)
 				).build();
 
         // Act - Assert
@@ -56,7 +56,7 @@ public class ComandoControladorReservaTest {
     	// Arrange
     	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
     			.conPelicula(
-						new Pelicula(null, "Test", "", "", EstadoPelicula.SIN_RESERVAR)
+						new Pelicula(null, "Test1", "Autor", "Descripcion", EstadoPelicula.SIN_RESERVAR)
 				).conTipoReserva("PREMIUM").build();
 
         // Act - Assert
@@ -72,7 +72,7 @@ public class ComandoControladorReservaTest {
     	// Arrange
     	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
     			.conPelicula(
-    					new Pelicula(null, "PruebaPelicula1", "", "", EstadoPelicula.SIN_RESERVAR)
+    					new Pelicula(null, "PruebaPelicula1", "Autor", "Descripcion", EstadoPelicula.SIN_RESERVAR)
     			).build();
 
         // Act - Assert
@@ -88,7 +88,7 @@ public class ComandoControladorReservaTest {
     	// Arrange
     	ComandoReserva reserva = new ComandoReservaTestDataBuilder()
     			.conPelicula(
-						new Pelicula(null, "Movie", "", "", EstadoPelicula.RESERVADA)
+						new Pelicula(null, "Movie", "Autor", "Descripcion", EstadoPelicula.RESERVADA)
 				).build();
 
         // Act - Assert

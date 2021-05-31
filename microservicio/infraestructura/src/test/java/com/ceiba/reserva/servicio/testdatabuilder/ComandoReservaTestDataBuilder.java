@@ -15,7 +15,7 @@ public class ComandoReservaTestDataBuilder {
 	public ComandoReservaTestDataBuilder() {
 		this.tipoReserva = "ESTANDAR";
 		this.fechaReserva = "24-05-2021";
-		this.pelicula = new Pelicula(null, "Prueba", "", "", EstadoPelicula.SIN_RESERVAR);
+		this.pelicula = new Pelicula(null, "Prueba", "Autor", "Descripcion", EstadoPelicula.SIN_RESERVAR);
 	}
 	
 	public ComandoReservaTestDataBuilder conTipoReserva(String tipoReserva) {

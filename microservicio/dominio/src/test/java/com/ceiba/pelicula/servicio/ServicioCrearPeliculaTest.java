@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.pelicula.modelo.entidad.Pelicula;
@@ -24,6 +25,24 @@ public class ServicioCrearPeliculaTest {
 	}
 	
 	@Test
+	public void validarPeliculaConNombreMenorA5Test() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conNombre("T");
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionLongitudValor.class, "El nombre de la pelicula debe tener una longitud mayor a 5 caracteres y menor a 30 caracteres");
+	}
+	
+	@Test
+	public void validarPeliculaConNombreMayorA30Test() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conNombre("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionLongitudValor.class, "El nombre de la pelicula debe tener una longitud mayor a 5 caracteres y menor a 30 caracteres");
+	}
+	
+	@Test
 	public void validarPeliculaConAutorTest() {
 		//Arrange
 		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conAutor(null);
@@ -33,12 +52,48 @@ public class ServicioCrearPeliculaTest {
 	}
 	
 	@Test
+	public void validarPeliculaConAutorMenorA5Test() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conAutor("T");
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionLongitudValor.class, "El autor de la pelicula debe tener una longitud mayor a 5 caracteres y menor a 30 caracteres");
+	}
+	
+	@Test
+	public void validarPeliculaConAutorMayorA30Test() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conAutor("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionLongitudValor.class, "El autor de la pelicula debe tener una longitud mayor a 5 caracteres y menor a 30 caracteres");
+	}
+	
+	@Test
 	public void validarPeliculaConDescripcionTest() {
 		//Arrange
 		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conDescripcion(null);
 		
 		//Act - Assert
 		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionValorObligatorio.class, "Debe ingresar una descripcion de la pelicula");
+	}
+	
+	@Test
+	public void validarPeliculaConDescripcionMenorA5Test() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conDescripcion("T");
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionLongitudValor.class, "La descripcion de la pelicula debe tener una longitud mayor a 5 caracteres y menor a 40 caracteres");
+	}
+	
+	@Test
+	public void validarPeliculaConDescripcionMayorA40Test() {
+		//Arrange
+		PeliculaTestDataBuilder pelicula = new PeliculaTestDataBuilder().conDescripcion("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		
+		//Act - Assert
+		BasePrueba.assertThrows(() -> pelicula.build(), ExcepcionLongitudValor.class, "La descripcion de la pelicula debe tener una longitud mayor a 5 caracteres y menor a 40 caracteres");
 	}
 	
 	@Test

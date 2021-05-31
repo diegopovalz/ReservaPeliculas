@@ -29,8 +29,8 @@ public class Reserva {
 	private Pelicula pelicula;
 	
 	public Reserva(Long id, String fechaReservaString, TipoReserva tipoReserva, Pelicula pelicula) {
-		validarObligatorio(fechaReservaString, DEBE_INGRESAR_FECHA_RESERVA);
 		validarObligatorio(tipoReserva, DEBE_INGRESAR_TIPO_RESERVA);
+		validarObligatorio(fechaReservaString, DEBE_INGRESAR_FECHA_RESERVA);
 		validarObligatorio(pelicula, DEBE_INGRESAR_PELICULA);
 		validarFormatoAplicable(fechaReservaString, "dd-MM-yyyy", FECHA_INVALIDA);
 		
